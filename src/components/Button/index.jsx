@@ -1,18 +1,19 @@
-import './styles.css'
+import Prop from 'prop-types';
+import './styles.css';
 
-import { Component } from 'react';
+export const Button = ({ text, onClick, disabled = false }) => (
+  // eslint-disable-next-line react/react-in-jsx-scope
+  <button className="button" onClick={onClick} disabled={disabled}>
+    {text}
+  </button>
+);
 
-export class Button extends Component {
-    render() {
-        const { text, action, disabled } = this.props;
-        return (
-            <button
-                disabled={disabled}
-                className='button'
-                onClick={action}
-            >
-                {text}
-            </button>
-        )
-    }
-}
+Button.defaultProps = {
+  disabled: false,
+};
+
+Button.propTypes = {
+  text: Prop.string.isRequired,
+  onClick: Prop.func.isRequired,
+  disabled: Prop.bool,
+};
